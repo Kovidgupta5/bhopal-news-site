@@ -1,65 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Bhopal News</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .news-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .news-card {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .news-card h3 {
-      margin: 0 0 10px;
-    }
-    .news-card p {
-      margin: 0 0 10px;
-    }
-    .news-card a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .news-card a:hover {
-      text-decoration: underline;
-    }
-    .error {
-      text-align: center;
-      color: red;
-      margin-top: 30px;
-    }
-  </style>
-</head>
-<body>
-
-<h1>📰 Bhopal News</h1>
-<div class="news-container" id="news"></div>
-<div class="error" id="error"></div>
-
 <script>
-  const apiKey = '0be3015d6fa44367ae6ddc61b4fac09b'; // ← Replace if needed
-  const url = `https://newsapi.org/v2/everything?q=bhopal&sortBy=publishedAt&language=en&pageSize=10&apiKey=${apiKey}`;
+  const url = `https://gnews.io/api/v4/search?q=bhopal&lang=en&country=in&max=10&apikey=YOUR_API_KEY_HERE`;
 
   fetch(url)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       const newsContainer = document.getElementById('news');
       if (!data.articles || data.articles.length === 0) {
@@ -80,9 +23,6 @@
     })
     .catch(err => {
       console.error(err);
-      document.getElementById('error').textContent = 'Error loading news. Please try again later.';
+      document.getElementById('error').textContent = 'Error loading news.';
     });
 </script>
-
-</body>
-</html>
